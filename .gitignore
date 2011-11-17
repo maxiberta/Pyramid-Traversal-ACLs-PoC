@@ -1,0 +1,7 @@
+build
+Session.vim
+*.pyc
+.coverage
+*.swp
+test.ini
+
