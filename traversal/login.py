@@ -32,6 +32,6 @@ def login(request):
 
 def logout(request):
     headers = forget(request)
-    return HTTPFound(location = request.route_url('view_wiki'),
+    return HTTPFound(location = '/',
                      headers = headers)
 

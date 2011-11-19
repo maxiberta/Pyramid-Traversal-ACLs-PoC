@@ -1,2 +1,6 @@
+import pyramid
+
 def my_view(request):
-    return {'project':'traversal'}
+    print __name__
+    userid = pyramid.security.authenticated_userid(request)
+    return {'project':'traversal', 'userid':userid}

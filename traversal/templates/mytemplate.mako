@@ -17,7 +17,15 @@
   <div id="wrap">
     <div id="top">
       <div class="top align-center">
-        <div><img src="${request.static_url('traversal:static/pyramid.png')}" width="750" height="169" alt="pyramid"/></div>
+        <div>
+	<h1>Userid: ${userid or 'None'}</h1>
+	% if userid:
+	    <a href="/logout">Logout</a>
+	% else:
+	    <a href="/login">Login</a>
+	% endif
+	<img src="${request.static_url('traversal:static/pyramid.png')}" alt="pyramid"/>
+	</div>
       </div>
     </div>
     <div id="middle">
