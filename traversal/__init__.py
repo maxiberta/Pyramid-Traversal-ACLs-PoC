@@ -2,19 +2,19 @@ from pyramid.config import Configurator
 from pyramid_beaker import session_factory_from_settings
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
-from traversal.security import groupfinder
+#from traversal.security import groupfinder
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     print __name__
 
-    authentication_policy = AuthTktAuthenticationPolicy('seekrit', callback=groupfinder)
+    authentication_policy = AuthTktAuthenticationPolicy('seekrit')#, callback=groupfinder)
     authorization_policy = ACLAuthorizationPolicy()
 
     session_factory = session_factory_from_settings(settings)
 
-    config = Configurator(root_factory='traversal.resources.RootFactory',
+    config = Configurator(root_factory='traversal.resources.Node',
                                 settings=settings,
                                 authentication_policy=authentication_policy,
                                 authorization_policy=authorization_policy,
@@ -27,15 +27,23 @@ def main(global_config, **settings):
     config.add_view('traversal.login.login',
                     route_name='login',
 #                    context='pyramid.httpexceptions.HTTPForbidden',
-                    renderer='traversal:templates/login.pt',
+                    renderer='traversal:templates/login.mako',
                     )
     config.add_view('traversal.login.logout',
                     route_name='logout',
                     )
-    config.add_view('traversal.views.my_view',
+    config.add_view('traversal.views.view',
 #                    context='traversal.resources.RootFactory',
+                    context='traversal.resources.Node',
                     renderer='traversal:templates/mytemplate.mako',
                     permission='view',
+                    )
+    config.add_view('traversal.views.edit',
+                    name='edit',
+#                    context='traversal.resources.RootFactory',
+                    context='traversal.resources.Node',
+                    renderer='traversal:templates/mytemplate.mako',
+                    permission='edit',
                     )
 
     config.add_static_view('static', 'traversal:static', cache_max_age=3600)

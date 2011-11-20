@@ -24,8 +24,7 @@
     <div id="top-small">
       <div class="top-small align-center">
         <div>
-          <img width="220" height="50" alt="pyramid"
-        src="${request.static_url('traversal:static/pyramid-small.png')}" />
+          <img width="220" height="50" alt="pyramid" src="${request.static_url('traversal:static/pyramid-small.png')}" />
         </div>
       </div>
     </div>
