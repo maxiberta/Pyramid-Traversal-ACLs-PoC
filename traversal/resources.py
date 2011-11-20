@@ -68,5 +68,5 @@ class Node(object):
             pass
         return permissions
 
-    def allows(self, permission):
+    def has_permission(self, permission):
         return has_permission(permission, self, self.request)
