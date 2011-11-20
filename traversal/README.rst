@@ -1,2 +1,0 @@
-Pyramid Traversal+ACLs PoC
-==========================
