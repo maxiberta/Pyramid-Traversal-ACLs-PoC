@@ -10,7 +10,7 @@ del{text-decoration:line-through;}
 table{border-collapse:collapse;border-spacing:0;}
 sub{vertical-align:sub;font-size:smaller;line-height:normal;}
 sup{vertical-align:super;font-size:smaller;line-height:normal;}
-ul,menu,dir{display:block;list-style-type:disc;margin:1em 0;padding-left:40px;}
+ul,menu,dir{display:block;list-style-type:disc;margin:0;padding-left:40px;}
 ol{display:block;list-style-type:decimal-leading-zero;margin:1em 0;padding-left:40px;}
 li{display:list-item;}
 ul ul,ul ol,ul dir,ul menu,ul dl,ol ul,ol ol,ol dir,ol menu,ol dl,dir ul,dir ol,dir dir,dir menu,dir dl,menu ul,menu ol,menu dir,menu menu,menu dl,dl ul,dl ol,dl dir,dl menu,dl dl{margin-top:0;margin-bottom:0;}
@@ -63,3 +63,4 @@ input[type=text],input[type=password]{width:205px;}
 input[type=submit]{background-color:#ddd;font-weight:bold;}
 /*Opera Fix*/
 body:before{content:"";height:100%;float:left;width:0;margin-top:-32767px;}
+.forbidden{color:red;}

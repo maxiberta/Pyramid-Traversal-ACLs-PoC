@@ -26,8 +26,11 @@
     </div>
     <div id="middle">
       <div class="align-left">
-	<p>View: ${view}</p>
+	View: ${view}
 	<h2>${request.context}</h2>
+	% if request.context.allows('edit'):
+	  <a href="edit">Edit</a>
+	% endif
       </div>
     </div>
     <div id="bottom">
@@ -36,7 +39,7 @@
 	  <td>${' . '.join([u'<a href="%s">%s</a>' % (request.resource_url(resource), resource) for resource in request.context.lineage()]) | n}</td>
 	  <td>
 	    <ul>
-	      ${' '.join(['<li><a href="%s">%s</a></li>' % (request.resource_url(child), child) for child in request.context.children()]) | n}
+	      ${' '.join(['<li><a href="%s" class="%s">%s</a></li>' % (request.resource_url(child), 'forbidden' if not child.allows('view') else '', child) for child in request.context.children() ] ) | n}
 	    </ul>
 	  </td>
 	</tr>

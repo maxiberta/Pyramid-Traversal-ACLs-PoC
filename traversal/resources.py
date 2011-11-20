@@ -1,5 +1,6 @@
 from pyramid.security import Allow, Deny
 from pyramid.security import Everyone
+from pyramid.security import has_permission
 from pyramid.location import lineage
 
 HIERARCHY = {
@@ -67,3 +68,5 @@ class Node(object):
             pass
         return permissions
 
+    def allows(self, permission):
+        return has_permission(permission, self, self.request)
