@@ -56,15 +56,18 @@ def main(global_config, **settings):
                     renderer='traversal:templates/mytemplate.mako',
                     permission='can_monitor_call',
                     )
+    config.add_view('traversal.views.monitor_call',
+                    name='monitor',
+                    renderer='traversal:templates/mytemplate.mako',
+                    permission='can_monitor_call',
+                    )
     config.add_view('traversal.views.view',
                     name='',
-                    context='traversal.resources.Node',
                     renderer='traversal:templates/mytemplate.mako',
                     permission='can_view',
                     )
     config.add_view('traversal.views.edit',
                     name='edit',
-                    context='traversal.resources.Node',
                     renderer='traversal:templates/mytemplate.mako',
                     permission='can_edit',
                     )

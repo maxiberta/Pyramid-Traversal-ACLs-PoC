@@ -48,10 +48,11 @@
 	% if request.context.has_permission('can_monitor_call'):
 	  (<a href="${request.route_url('monitor_call_route', traverse=request.traversed)}">monitor</a>)
 	% endif
-	<p>View: "${request.view_name}"<p>
-	<p>Route name: ${request.matched_route and request.matched_route.name}</p>
-	<p>Route path: ${request.matched_route and request.matched_route.path}</p>
-	<p>Resource url:  ${request.context.url()}</p>
+	<p>view callable: ${view}</p>
+	<p>request.view_name: "${request.view_name}"<p>
+	<p>request.matched_route.name: ${request.matched_route and request.matched_route.name}</p>
+	<p>request.matched_route.path: ${request.matched_route and request.matched_route.path}</p>
+	<p>request.context.url:  ${request.context.url()}</p>
       </div>
     </div>
   </div>
