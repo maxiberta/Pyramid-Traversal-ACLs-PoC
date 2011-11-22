@@ -25,25 +25,29 @@
       </div>
     </div>
     <div id="middle">
-      <div class="align-left">
-	View: ${view}
-	<h2>${request.context}</h2>
-	% if request.context.has_permission('edit'):
-	  <a href="edit">Edit</a>
-	% endif
-      </div>
-    </div>
-    <div id="bottom">
       <table>
 	<tr>
 	  <td>${' . '.join([u'<a href="%s">%s</a>' % (request.resource_url(resource), resource) for resource in request.context.lineage()]) | n}</td>
 	  <td>
 	    <ul>
-	      ${' '.join(['<li><a href="%s" class="%s">%s</a></li>' % (request.resource_url(child), 'forbidden' if not child.has_permission('view') else '', child) for child in request.context.children() ] ) | n}
+	      ${' '.join(['<li><a href="%s" class="%s">%s</a></li>' % (request.resource_url(child), 'forbidden' if not child.has_permission('can_view') else '', child) for child in request.context.children() ] ) | n}
 	    </ul>
 	  </td>
 	</tr>
       </table>
+    </div>
+    <div id="bottom">
+      <div class="align-left">
+	<h3 style="display:inline;">${request.context}</h3>
+	% if request.context.has_permission('can_edit'):
+	  (<a href="edit">edit</a>)
+	% endif
+	<p>View: "${request.view_name}"<p>
+	<p>Route name: ${request.matched_route and request.matched_route.name}</p>
+	<p>Route path: ${request.matched_route and request.matched_route.path}</p>
+	<p>Route url:  ${request.matched_route and request.route_url(request.matched_route.name, traverse=request.traversed)}</p>
+	<p>${dir(request.matched_route)}</p>
+      </div>
     </div>
   </div>
   <div id="footer">
