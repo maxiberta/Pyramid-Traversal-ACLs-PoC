@@ -38,7 +38,7 @@ def main(global_config, **settings):
     config.add_route('root', '/')
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
-    config.add_route('monitor_call_route', '/mon/call/*traverse')
+    config.add_route('monitor_call_route', '/mon/call/*traverse', use_global_views=True)
 
     config.add_view('traversal.views.view',
                     route_name='root',

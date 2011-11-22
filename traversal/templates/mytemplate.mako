@@ -38,15 +38,20 @@
     </div>
     <div id="bottom">
       <div class="align-left">
-	<h3 style="display:inline;">${request.context}</h3>
+	<h3 style="display:inline;">Context: ${request.context}</h3>
 	% if request.context.has_permission('can_edit'):
 	  (<a href="edit">edit</a>)
+	% endif
+	% if request.context.has_permission('can_view'):
+	  (<a href="${request.resource_url(request.context)}">view</a>)
+	% endif
+	% if request.context.has_permission('can_monitor_call'):
+	  (<a href="${request.route_url('monitor_call_route', traverse=request.traversed)}">monitor</a>)
 	% endif
 	<p>View: "${request.view_name}"<p>
 	<p>Route name: ${request.matched_route and request.matched_route.name}</p>
 	<p>Route path: ${request.matched_route and request.matched_route.path}</p>
-	<p>Route url:  ${request.matched_route and request.route_url(request.matched_route.name, traverse=request.traversed)}</p>
-	<p>${dir(request.matched_route)}</p>
+	<p>Resource url:  ${request.context.url()}</p>
       </div>
     </div>
   </div>

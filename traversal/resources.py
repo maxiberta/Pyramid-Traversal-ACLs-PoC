@@ -25,8 +25,8 @@ HIERARCHY = {
 
 ACLs = {
     'editor': { 'Allow': {  'Argentina': ['can_view'],
-                            'Capital': ['can_edit', 'can_monitor_call'],
-                            'Colombia': ['can_monitor_call'],
+                            'Capital': ['can_edit'],
+                            'Belgrano': ['can_monitor_call'],
                         },
                 'Deny': {   'Avellaneda': ['can_view'],
                             'Palermo': ['can_view', 'can_edit'],
@@ -71,3 +71,9 @@ class Node(object):
 
     def has_permission(self, permission):
         return has_permission(permission, self, self.request)
+
+    def url(self):
+        if self.request.matched_route:
+            return self.request.route_url(self.request.matched_route.name, traverse=self.request.traversed)
+        else:
+            return self.request.resource_url(self.request.context)
